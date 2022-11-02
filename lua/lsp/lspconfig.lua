@@ -5,7 +5,9 @@ if not present then
 	return
 end
 
+require("ui.highlight").load_highlight("lsp")
 require("lsp.config.lsp-ui")
+
 local M = {}
 --local utils = require("utils.utils")
 

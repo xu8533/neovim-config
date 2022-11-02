@@ -7,6 +7,8 @@ if not status then
 	return
 end
 
+require("ui.highlight").load_highlight("bufferline")
+
 --- bufferline配置
 --vim.opt.termguicolors = true
 bufferline.setup({

@@ -6,3 +6,5 @@ require("plugins")
 require("keybindings")
 ---主题设置---
 require("colorscheme")
+---默认色彩---
+require("ui.highlight").load_theme()

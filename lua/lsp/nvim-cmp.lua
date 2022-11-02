@@ -7,6 +7,8 @@ if not present then
 	return
 end
 
+require("ui.highlight").load_highlight("nvim-cmp")
+
 vim.opt.completeopt = "menuone,noselect"
 require("lsp.config.luasnip-conf")
 

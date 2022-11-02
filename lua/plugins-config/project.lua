@@ -1,4 +1,5 @@
 local status, project = pcall(require, "project_nvim")
+
 if not status then
 	vim.notify("没有找到project插件，请先安装该插件!")
 	return
@@ -28,7 +29,7 @@ project.setup({
 
 	-- Don't calculate root dir on specific directories
 	-- Ex: { "~/.cargo/*", ... }
-	exclude_dirs = {},
+	exclude_dirs = { "~/node_modules/*" },
 
 	-- Show hidden files in telescope
 	show_hidden = false,

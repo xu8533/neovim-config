@@ -1,11 +1,11 @@
 local status, treesitter = pcall(require, "nvim-treesitter.configs")
 
-vim.notify = require("notify")
-
 if not status then
 	vim.notify("没有找到nvim-treesitter插件，请先安装该插件!")
 	return
 end
+
+require("ui.highlight").load_highlight("treesitter")
 
 treesitter.setup({
 	ensure_installed = { "lua", "perl", "python" },

@@ -5,6 +5,8 @@ if not present then
 	return
 end
 
+require("ui.highlight").load_highlight("whichkey")
+
 local is_plugin_installed = require("utils.utils").is_plugin_installed
 require("toggleterm")
 

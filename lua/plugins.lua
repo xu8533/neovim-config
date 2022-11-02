@@ -47,7 +47,7 @@ packer.startup({
 		use({ "olimorris/onedarkpro.nvim", disable = false, cmd = "colorscheme" })
 		use({ "ellisonleao/gruvbox.nvim", disable = false, cmd = "colorscheme" })
 		-- 终端图标
-		use({ "nvim-tree/nvim-web-devicons", event = { "BufRead", "BufNewFile" } })
+		use({ "nvim-tree/nvim-web-devicons" })
 		-- 侧边栏目录
 		use({
 			"nvim-tree/nvim-tree.lua",
@@ -107,6 +107,9 @@ packer.startup({
 		-- 工程管理
 		use({
 			"ahmedkhalf/project.nvim",
+			config = function()
+				require("plugins-config.project")
+			end,
 		})
 		-- 图片视频预览
 		use({ "nvim-lua/popup.nvim", disable = true })
@@ -249,6 +252,9 @@ packer.startup({
 			"glepnir/lspsaga.nvim",
 			after = "nvim-lspconfig",
 			--cmd = "Lspsaga",
+			config = function()
+				require("lsp.config.lspsaga")
+			end,
 			branch = "main",
 		}) -- lsp ui优化
 		use({
@@ -375,10 +381,12 @@ packer.startup({
 				"BookmarkClearAll",
 				"BookmarkMoveDown",
 				"BookmarkMoveUp",
+				"Telescope vim_bookmarks",
 			},
 		})
 	end,
 	config = {
+		compile_on_sync = true,
 		profile = {
 			enable = true,
 			threshold = 0,
@@ -387,6 +395,11 @@ packer.startup({
 		max_jobs = 60,
 		-- 浮动窗口打开安装列表
 		display = {
+			working_sym = "ﲊ",
+			error_sym = "✗ ",
+			done_sym = " ",
+			removed_sym = " ",
+			moved_sym = "",
 			open_fn = function()
 				return require("packer.util").float({ border = "single" })
 			end,

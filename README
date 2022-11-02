@@ -1,0 +1,61 @@
+my neovim config
+
+all files:
+
+.
+├── init.lua
+├── lua
+│   ├── autocmds.lua
+│   ├── colorscheme.lua
+│   ├── keybindings.lua
+│   ├── keybindings.lua.bak
+│   ├── lsp
+│   │   ├── config
+│   │   │   ├── lspsaga.lua
+│   │   │   ├── lsp-ui.lua
+│   │   │   ├── luasnip-conf.lua
+│   │   │   └── lua-svr.lua
+│   │   ├── lspconfig.lua
+│   │   ├── mason.lua
+│   │   ├── null-ls.lua
+│   │   └── nvim-cmp.lua
+│   ├── options.lua
+│   ├── plugins-config
+│   │   ├── autopairs.lua
+│   │   ├── bufferline.lua
+│   │   ├── colorizer.lua
+│   │   ├── comment.lua
+│   │   ├── dap.lua
+│   │   ├── dap-ui.lua
+│   │   ├── dashboard.lua
+│   │   ├── gitsigns.lua
+│   │   ├── gruvbox.lua
+│   │   ├── indent-blankline.lua
+│   │   ├── lualine-bubbles.lua
+│   │   ├── lualine-evil.lua
+│   │   ├── lualine.lua -> my-lualine.lua
+│   │   ├── lualine-slanted-gaps.lua
+│   │   ├── my-lualine.lua
+│   │   ├── nvim-notify.lua
+│   │   ├── nvim-tree.lua
+│   │   ├── nvim-web-devicons.lua
+│   │   ├── project.lua
+│   │   ├── symbols-outline.lua
+│   │   ├── telescope.lua
+│   │   ├── toggleterm.lua
+│   │   ├── treesitter.lua
+│   │   ├── trouble.lua
+│   │   └── which-key.lua
+│   ├── plugins.lua
+│   ├── ui
+│   │   ├── hightlight
+│   │   │   └── git.lua
+│   │   └── icons.lua
+│   └── utils
+│       ├── plugin-mappings.lua
+│       ├── signature.lua
+│       └── utils.lua
+├── plugin
+│   └── packer_compiled.lua
+└── README
+

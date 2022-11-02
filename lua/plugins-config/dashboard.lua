@@ -1,23 +1,19 @@
 local present, db = pcall(require, "dashboard")
+
 if not present then
 	vim.notify("没有找到dashboard插件，请先安装该插件!")
 	return
 end
 
-local home = os.getenv("HOME")
+require("ui.highlight").load_highlight("dashboard")
 
---db.preview_command = 'cat | lolcat -F 0.8'
---db.preview_command = 'ueberzug'
---db.preview_file_path = home .. '/.config/nvim/static/neovim.cat'
---db.preview_file_height = 8
---db.preview_file_width = 70
 db.session_directory = vim.fn.stdpath("cache") .. "/session"
 db.header_pad = 0
 db.center_pad = 1
 db.footer_pad = 1
 
 local datetime_ok, datetime = pcall(os.date, "%Y-%m-%d 🕔 %I:%M:%p %A")
-local version_ok, nvim_version = pcall(os.capture, "nvim --version | awk 'NR == 1'")
+local version_ok, nvim_version = pcall(os.capture, "vi --version | awk 'NR == 1'")
 
 local function footer()
 	if version_ok and datetime_ok then

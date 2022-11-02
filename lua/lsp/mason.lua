@@ -5,6 +5,8 @@ if not present then
 	return
 end
 
+require("ui.highlight").load_highlight("mason")
+
 mason.setup({
 	--ensure_installed = { "" }, -- not an option from mason.nvim
 	ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim

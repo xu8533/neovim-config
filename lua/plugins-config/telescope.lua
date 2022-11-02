@@ -5,12 +5,15 @@ if not present then
 	return
 end
 
+require("ui.highlight").load_highlight("telescope")
+
 --local lga_actions = require("telescope-live-grep-args.actions")
 --local fb_picker = require("telescope").extensions.file_browser.picker
 --local fb_config = require("telescope").extensions.file_browser.config
 --local fb_finders = require("telescope").extensions.file_browser.finders
-local fb_actions = require("telescope").extensions.file_browser.actions
 --local is_plugin_installed = require("utils.utils").is_plugin_installed
+local fb_actions = require("telescope").extensions.file_browser.actions
+--local bookmark_actions = require("telescope").extensions.vim_bookmarks.actions
 
 local telescope_config = {
 	defaults = {
@@ -50,14 +53,12 @@ local telescope_config = {
 		winblend = 0,
 		border = {},
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-		results_title = "搜索结果",
+		results_title = "结果",
 		color_devicons = true,
-		--set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		preview = { treesitter = true },
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
 		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
@@ -67,21 +68,52 @@ local telescope_config = {
 		--	i = { ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble },
 		--},
 	},
-	pickers = {},
-	--pickers = {
-	--    -- 内置pickers配置
-	--    find_files = {
-	--        -- picker皮肤，dropdown, cursor, ivy三种
-	--        theme = "dropdown",
-	--    }
-	--},
-	-- fzf扩展配置
+	pickers = {
+		find_files = {
+			prompt_title = "文件搜索",
+			--theme = "dropdown",
+		},
+		live_grep = {
+			prompt_title = "快速搜索",
+		},
+		man_pages = {
+			prompt_title = "系统手册",
+		},
+		help_tags = {
+			prompt_title = "help tags",
+		},
+		oldfiles = {
+			prompt_title = "历史记录",
+		},
+		search_history = {
+			prompt_title = "搜索历史",
+		},
+		highlights = {
+			prompt_title = "高亮色查询",
+		},
+		colorscheme = {
+			prompt_title = "主题预览",
+		},
+	},
+	-- 扩展配置
 	extensions = {
 		fzf = {
 			fuzzy = true,
 			override_generic_sorter = true,
 			override_file_sorter = true,
 			case_mode = "smart_case",
+		},
+		vim_bookmarks = {
+			all = {
+				prompt_title = "所有书签",
+			},
+			current_file = {
+				prompt_title = "当前文件书签",
+			},
+			--attach_mappings = function(_, map)
+			--	map("n", "dd", bookmark_actions.delete_selected_or_at_cursor)
+			--	return true
+			--end,
 		},
 		--	live_grep_args = {
 		--		auto_quoting = true,
@@ -95,6 +127,7 @@ local telescope_config = {
 		file_browser = {
 			theme = "ivy",
 			-- disables netrw and use telescope-file-browser in its place
+			prompt_title = "文件浏览",
 			hijack_netrw = true,
 			mappings = {
 				-- 默认快捷键映射，根据需要修改
@@ -132,28 +165,15 @@ local telescope_config = {
 				},
 			},
 		},
+		projects = {
+			prompt_title = "工程管理",
+		},
 		--	--		media_files = {
 		--	--			-- filetypes whitelist
 		--	--			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
 		--	--			filetypes = { "png", "jpg", "jpeg", "mp4", "mkv", "gif", "pdf" },
 		--	--			find_cmd = "rg", -- find command (defaults to `fd`)
 		--	--		},
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown({}),
-			-- pseudo code / specification for writing custom displays, like the one
-			-- for "codeactions"
-			specific_opts = {
-				--   [kind] = {
-				--     make_indexed = function(items) -> indexed_items, width,
-				--     make_displayer = function(widths) -> displayer
-				--     make_display = function(displayer) -> function(e)
-				--     make_ordinal = function(e) -> string
-				--   },
-				--   -- for example to disable the custom builtin "codeactions" display
-				--      do the following
-				codeactions = false,
-			},
-		},
 	},
 }
 

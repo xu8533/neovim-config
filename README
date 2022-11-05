@@ -8,7 +8,6 @@ all files:
 │   ├── autocmds.lua
 │   ├── colorscheme.lua
 │   ├── keybindings.lua
-│   ├── keybindings.lua.bak
 │   ├── lsp
 │   │   ├── config
 │   │   │   ├── lspsaga.lua
@@ -22,6 +21,7 @@ all files:
 │   ├── options.lua
 │   ├── plugins-config
 │   │   ├── autopairs.lua
+│   │   ├── bookmarks.lua
 │   │   ├── bufferline.lua
 │   │   ├── colorizer.lua
 │   │   ├── comment.lua
@@ -48,8 +48,31 @@ all files:
 │   │   └── which-key.lua
 │   ├── plugins.lua
 │   ├── ui
-│   │   ├── hightlight
-│   │   │   └── git.lua
+│   │   ├── colors.lua
+│   │   ├── highlight.lua
+│   │   ├── hl-group
+│   │   │   ├── blankline.lua
+│   │   │   ├── bufferline.lua
+│   │   │   ├── dashboard.lua
+│   │   │   ├── defaults.lua
+│   │   │   ├── devicons.lua
+│   │   │   ├── git.lua
+│   │   │   ├── gruvbox_light.lua
+│   │   │   ├── gruvbox.lua
+│   │   │   ├── gruvbox_material.lua
+│   │   │   ├── lsp.lua
+│   │   │   ├── mason.lua
+│   │   │   ├── notify.lua
+│   │   │   ├── nvim-cmp.lua
+│   │   │   ├── nvimtree.lua
+│   │   │   ├── onedark.lua
+│   │   │   ├── one_light.lua
+│   │   │   ├── statusline.lua
+│   │   │   ├── telescope.lua
+│   │   │   ├── tokyodark.lua
+│   │   │   ├── tokyonight.lua
+│   │   │   ├── treesitter.lua
+│   │   │   └── whichkey.lua
 │   │   └── icons.lua
 │   └── utils
 │       ├── plugin-mappings.lua
@@ -58,4 +81,3 @@ all files:
 ├── plugin
 │   └── packer_compiled.lua
 └── README
-

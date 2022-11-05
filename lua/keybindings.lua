@@ -97,8 +97,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
---map("n", "<Leader>fB", telescope_bookmarks(), opt)
-
 -- Alt+m打开或关闭nvim-tree
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 

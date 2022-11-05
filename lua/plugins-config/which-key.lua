@@ -7,6 +7,9 @@ end
 
 require("ui.highlight").load_highlight("whichkey")
 
+local telescope_bookmarks = require("utils.utils").telescope_bookmarks
+local telescope_projects = require("utils.utils").telescope_projects
+--local telescope_file_browser = require("utils.utils").telescope_file_browser
 local is_plugin_installed = require("utils.utils").is_plugin_installed
 require("toggleterm")
 
@@ -158,15 +161,15 @@ if is_plugin_installed("telescope.nvim") then
 	which_key.register({
 		f = {
 			name = "Telescope Find",
+			b = { ts_extensions.file_browser.file_browser, "浏览文件" },
 			f = { ts_builtin.find_files, "查找文件" },
+			g = { ts_builtin.live_grep, "搜索文件" },
 			h = { ts_builtin.help_tags, "查找帮助" },
 			o = { ":Telescope oldfiles<CR>", "历史记录" },
-			p = { ":Telescope projects<CR>", "工程管理" },
-			b = { ts_extensions.file_browser.file_browser, "浏览文件" },
-			g = { ts_builtin.live_grep, "搜索文件" },
-			B = { ":Telescope vim_bookmarks all<CR>", "查找书签" },
+			p = { telescope_projects, "工程管理" },
+			B = { telescope_bookmarks, "查找书签" },
 			H = { ":Telescope highlights<CR>", "查找颜色" },
-			M = { "<cmd>Telescope man_pages<cr>", "帮助手册" },
+			M = { ":Telescope man_pages<CR>", "帮助手册" },
 			P = {
 				"<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
 				"主题预览",

@@ -12,8 +12,8 @@ require("ui.highlight").load_highlight("telescope")
 --local fb_config = require("telescope").extensions.file_browser.config
 --local fb_finders = require("telescope").extensions.file_browser.finders
 --local is_plugin_installed = require("utils.utils").is_plugin_installed
-local fb_actions = require("telescope").extensions.file_browser.actions
 --local bookmark_actions = require("telescope").extensions.vim_bookmarks.actions
+local fb_actions = require("telescope").extensions.file_browser.actions
 
 local telescope_config = {
 	defaults = {
@@ -62,6 +62,7 @@ local telescope_config = {
 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
 		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+		cwd_to_path = true,
 		--mappings = {
 		--	n = { ["<Ecs>"] = require("telescope.actions").close },
 		--	n = { ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble },
@@ -103,27 +104,6 @@ local telescope_config = {
 			override_file_sorter = true,
 			case_mode = "smart_case",
 		},
-		vim_bookmarks = {
-			all = {
-				prompt_title = "所有书签",
-			},
-			current_file = {
-				prompt_title = "当前文件书签",
-			},
-			--attach_mappings = function(_, map)
-			--	map("n", "dd", bookmark_actions.delete_selected_or_at_cursor)
-			--	return true
-			--end,
-		},
-		--	live_grep_args = {
-		--		auto_quoting = true,
-		--		-- overrde default mappiings
-		--		mappings = {
-		--			i = {
-		--				["<C-k>"] = lga_actions.quote_prompt(),
-		--			},
-		--		},
-		--	},
 		file_browser = {
 			theme = "ivy",
 			-- disables netrw and use telescope-file-browser in its place
@@ -165,9 +145,15 @@ local telescope_config = {
 				},
 			},
 		},
-		projects = {
-			prompt_title = "工程管理",
-		},
+		--	live_grep_args = {
+		--		auto_quoting = true,
+		--		-- overrde default mappiings
+		--		mappings = {
+		--			i = {
+		--				["<C-k>"] = lga_actions.quote_prompt(),
+		--			},
+		--		},
+		--	},
 		--	--		media_files = {
 		--	--			-- filetypes whitelist
 		--	--			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -181,10 +167,10 @@ telescope_setup.setup(telescope_config)
 
 -- 配置完telescope扩展后需要载入扩展才可以正常使用
 require("telescope").load_extension("fzf")
-require("telescope").load_extension("projects")
-require("telescope").load_extension("file_browser")
 require("telescope").load_extension("notify")
-require("telescope").load_extension("vim_bookmarks")
+require("telescope").load_extension("file_browser")
+--require("telescope").load_extension("projects")
+--require("telescope").load_extension("vim_bookmarks")
 --require("telescope").load_extension("media_files")
 --require("telescope").load_extension("ui-select")
 --require("telescope").load_extension("live_grep_args")

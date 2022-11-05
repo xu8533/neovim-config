@@ -51,4 +51,32 @@ function M.is_plugin_installed(plugins_name)
 	end
 end
 
+function M.telescope_projects()
+	--vim.cmd("PackerLoad project.nvim")
+	if not packer_plugins["project.nvim"].loaded then
+		print("loading project")
+		vim.cmd("PackerLoad project.nvim")
+	end
+	require("telescope").load_extension("projects")
+	require("telescope").extensions.projects.projects({})
+	--vim.cmd("Telescope projects")
+end
+
+function M.telescope_bookmarks()
+	--vim.cmd("PackerLoad vim-bookmarks")
+	if not packer_plugins["vim-bookmarks"].loaded and packer_plugins["telescope-vim-bookmarks.nvim"].loaded then
+		print("loading vim-bookmarks")
+		vim.cmd("PackerLoad vim-bookmarks")
+		vim.cmd("PackerLoad telescope-vim-bookmarks.nvim")
+	end
+	local bookmark_actions = require("telescope").extensions.vim_bookmarks.actions
+	require("telescope").extensions.vim_bookmarks.all({
+		prompt_title = "所有书签",
+		attach_mappings = function(_, map)
+			map("n", "dd", bookmark_actions.delete_selected_or_at_cursor)
+			return true
+		end,
+	})
+end
+
 return M

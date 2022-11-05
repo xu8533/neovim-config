@@ -1,3 +1,7 @@
+local impatient_ok, impatient = pcall(require, "impatient")
+if impatient_ok then
+	impatient.enable_profile()
+end
 ---基础配置---
 require("options")
 ---插件管理---

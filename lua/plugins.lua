@@ -27,9 +27,9 @@ packer.startup({
 		-- lazy-load, 加快启动速度
 		use({
 			"lewis6991/impatient.nvim",
-			config = function()
-				require("impatient")
-			end,
+			--config = function()
+			--	require("impatient")
+			--end,
 		})
 		use({ "nvim-lua/plenary.nvim" })
 		-- 修改通知样式
@@ -100,13 +100,22 @@ packer.startup({
 		})
 		use({
 			"nvim-telescope/telescope-file-browser.nvim",
+			--keys = {
+			--	"<Leader>fb",
+			--},
+			--cmd = "Telescope file_browser",
 		})
 		use({
 			"tom-anders/telescope-vim-bookmarks.nvim",
+			keys = {
+				"<Leader>fB",
+			},
 		})
 		-- 工程管理
 		use({
 			"ahmedkhalf/project.nvim",
+			cmd = "Telescope projects",
+			keys = { "<Leader>fp" },
 			config = function()
 				require("plugins-config.project")
 			end,

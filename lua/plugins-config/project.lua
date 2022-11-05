@@ -1,6 +1,6 @@
-local status, project = pcall(require, "project_nvim")
+local present, project = pcall(require, "project_nvim")
 
-if not status then
+if not present then
 	vim.notify("没有找到project插件，请先安装该插件!")
 	return
 end

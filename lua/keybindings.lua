@@ -85,7 +85,6 @@ function _G.set_terminal_keymaps()
 	map("t", "<A-j>", "<c-\\><c-n><c-w>j", opt)
 	map("t", "<A-k>", "<c-\\><c-n><c-w>k", opt)
 	map("t", "<A-l>", "<c-\\><c-n><c-w>l", opt)
-
 	map("t", "<S-h>", "<c-\\><C-n>:vertical resize +3<CR>", opt)
 	map("t", "<S-j>", "<c-\\><C-n>:resize -1<CR>", opt)
 	map("t", "<S-k>", "<c-\\><C-n>:resize +1<CR>", opt)
@@ -97,6 +96,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		set_terminal_keymaps()
 	end,
 })
+
+--map("n", "<Leader>fB", telescope_bookmarks(), opt)
 
 -- Alt+m打开或关闭nvim-tree
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)

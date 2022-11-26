@@ -8,5 +8,4 @@ end
 leap.add_default_mappings(true)
 leap.opts.ighlight_unlabeled_phase_one_targets = true
 
-vim.keymap.set({ "x", "o", "n" }, "r", "<Plug>(leap-forward-to)")
---vim.api.nvim_set_keymap({ "x", "o", "n" }, "s", "<Plug>leap-forward-to", { noremap = true, silent = true })
+vim.keymap.set({ "x", "o", "n" }, "s", "<Plug>(leap-forward-to)", { silent = true })

@@ -5,8 +5,8 @@ local autocmd = vim.api.nvim_create_autocmd
 g.vim_version = vim.version().minor
 -- 使用filetype.lua替换filetype.vim
 if g.vim_version < 8 then
-	g.do_filetype_lua = 1
 	g.did_load_filetypes = 0
+	g.do_filetype_lua = 1
 end
 
 --- 汉字编码
@@ -18,47 +18,39 @@ opt.fileencoding = "utf-8"
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 --- 使用相对行号
-vim.wo.number = true
-vim.wo.relativenumber = false
+opt.number = true
+opt.relativenumber = true
+opt.numberwidth = 2
 --- 高亮所在行
-vim.wo.cursorline = true
+opt.cursorline = true
 --- 显示左侧图标指示列
-vim.wo.signcolumn = "yes"
+opt.signcolumn = "yes"
 --- 右侧颜色标尺位置
 --vim.wo.colorcolumn = "114"
---vim.wo.colorcolumn = "200"
 --- 自动缩进，将<tab>替换为4个空格
+--opt.shiftround = true
 opt.tabstop = 4
-vim.bo.tabstop = 4
 opt.softtabstop = 4
-opt.shiftround = true
 opt.expandtab = true
-vim.bo.expandtab = true
---- >> <<时移动长度
 opt.shiftwidth = 4
-vim.bo.shiftwidth = 4
---- 新行对齐当前行
-opt.autoindent = true
-vim.bo.autoindent = true
 opt.smartindent = true
-opt.cindent = true
-vim.bo.cindent = true
 --- 大小写不敏感搜索
 opt.ignorecase = true
 opt.smartcase = true
---- 非高亮搜索
+--- 高亮搜索
 opt.hlsearch = true
 --- 渐进式搜索
 opt.incsearch = true
 --- 命令行高为2,显示更多信息
 opt.cmdheight = 2
---- 当文件被外部程序修改是，自动家在
+--- 当文件被外部程序修改时自动刷新
 opt.autoread = true
-vim.bo.autoread = true
---- 自动保持文件，防止丢失
+--- 自动保存文件，防止丢失
 opt.autowrite = true
---- 禁止折行
-vim.wo.wrap = false
+--- 开启自动折行
+--opt.wrap = false
+-- Without this option some times backspace did not work correctly.
+opt.backspace = "indent,eol,start"
 --- 光标在行首尾时下列键可以跳到下一行
 opt.whichwrap:append("<>[]hl")
 --- 允许隐藏被修改过的buffer
@@ -75,19 +67,19 @@ opt.timeoutlen = 500
 opt.splitbelow = true
 opt.splitright = true
 --- 自动补全不自动选中
-g.completeopt = "menuone,noselect"
+opt.completeopt = { "menuone,noselect" }
 --- 补全增强
-opt.wildmenu = true
+--opt.wildmenu = true
 --- 禁用nvim自我介绍
 opt.shortmess:append("sI")
 --- 补全列表长度为10
 opt.pumheight = 10
 --- 永远显示tabline
-opt.showtabline = 2
+--opt.showtabline = 2
 --- 使用增强状态栏插件后不再需要vim的模式提示
 opt.showmode = false
 --- 关闭语法高亮, 使用treesitter
-opt.syntax = "disable"
+--opt.syntax = "disable"
 --- 显示不可见字符
 opt.list = true
 --opt.listchars:append("space:⋅")
@@ -97,7 +89,6 @@ opt.listchars:append("eol:↴")
 --- 鼠标支持
 opt.mouse = "a"
 --- 剪切板，让系统和neovim之间进行复制粘贴
---vim.cmd( "set clipboard+=unnamedplus" )-- Make substitution work in realtime
 opt.clipboard = "unnamedplus"
 --- 背景和颜色支持
 opt.background = "dark"
@@ -116,10 +107,10 @@ opt.ruler = false
 opt.colorcolumn = "9999"
 
 -- 开启折叠模块
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- 默认不要折叠，需要是用zc或zo操作
-vim.opt.foldlevel = 99
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99
 
 -- Set line number for help files.
 local help_config = vim.api.nvim_create_augroup("help_config", { clear = true })
@@ -132,7 +123,7 @@ autocmd("FileType", {
 })
 
 -- Add/Diasable cursorline and statusline in some buffers and filetypes.
-statusline_hide = {
+local statusline_hide = {
 	"Dashboard",
 	"TelescopePrompt",
 	"TelescopeResults",
@@ -205,6 +196,7 @@ end
 local default_providers = {
 	"node",
 	"perl",
+	"python3",
 	"python3",
 	"ruby",
 }

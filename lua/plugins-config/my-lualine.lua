@@ -41,7 +41,7 @@ local config = {
 			{
 				"diagnostics",
 				--source = {'null-ls'},
-				--source = {'nvim'},
+				source = { "nvim" },
 			},
 		},
 		lualine_c = {
@@ -117,8 +117,8 @@ ins_left({
 		message = {
 			pre = "(",
 			post = ")",
-			commenced = "处理中",
-			completed = "完成",
+			commenced = "In Porgress",
+			completed = "Completed",
 		},
 	},
 	display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },

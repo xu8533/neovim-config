@@ -9,6 +9,13 @@ require("ui.highlight").load_highlight("treesitter")
 
 treesitter.setup({
 	ensure_installed = { "lua", "perl", "python" },
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = true,
+
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
+
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
@@ -28,10 +35,10 @@ treesitter.setup({
 			--node_incremental = "grn",
 			--scope_incremental = "grc",
 			--node_decremental = "grm",
-			--init_selection = "<CR>",
-			--node_incremental = "<CR>",
-			--scope_incremental = "<BS>",
-			--node_decremental = "<TAB>",
+			init_selection = "<CR>",
+			node_incremental = "<CR>",
+			scope_incremental = "<BS>",
+			node_decremental = "<TAB>",
 		},
 	},
 	ident = {

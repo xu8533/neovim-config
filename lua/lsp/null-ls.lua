@@ -39,10 +39,6 @@ null_ls.setup({
 				"-w",
 			},
 		}),
-
-		--        diagnostics.zsh,
-		-- diagnostics.luacheck,
-		--        diagnostics.pylint,
 	},
 	----    This function is for format on save.
 	on_attach = function(client, bufnr)

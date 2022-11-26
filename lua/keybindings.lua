@@ -2,21 +2,24 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 local map = vim.api.nvim_set_keymap
+--local map = vim.keymap.set
 --- 复用 opt 参数
 local opt = { noremap = true, silent = true }
 
-map("n", "s", "", opt) -- 取消s键默认功能
-map("n", "sn", "<C-w>n", opt) -- 水平新建窗口
-map("n", "sN", ":vnew<CR>", opt) -- 垂直新建窗口
-map("n", "sv", ":vsplit<CR>", opt) -- 垂直分屏
-map("n", "sh", ":split<CR>", opt) -- 水平分屏
-map("n", "sc", "<C-w>c", opt) -- 关闭当前窗口
-map("n", "so", "<C-w>o", opt) -- 关闭其他窗口
-map("n", "s=", "<C-w>=", opt) -- 等比例调整窗口
-map("n", "s,", ":vertical resize -20<CR>", opt) -- 左移20列
-map("n", "s.", ":vertical resize +20<CR>", opt) -- 右移20列
-map("n", "sj", ":resize +10<CR>", opt) -- 上移10行
-map("n", "sk", ":resize -10<CR>", opt) -- 下移10行
+--map("n", "s", "<Nop>", opt) -- 禁用原生s功能
+--vim.keymap.del({ "n", "x", "o" }, "s") -- 禁用原生s功能
+map("n", "wn", "<C-w>n", opt) -- 水平新建窗口
+--map({ "x", "o", "n" }, "s", "<Plug>(leap-forward-to)", opt)
+map("n", "wN", ":vnew<CR>", opt) -- 垂直新建窗口
+map("n", "wv", ":vsplit<CR>", opt) -- 垂直分屏
+map("n", "wh", ":split<CR>", opt) -- 水平分屏
+map("n", "wc", "<C-w>c", opt) -- 关闭当前窗口
+map("n", "wo", "<C-w>o", opt) -- 关闭其他窗口
+map("n", "w=", "<C-w>=", opt) -- 等比例调整窗口
+map("n", "w,", ":vertical resize -20<CR>", opt) -- 左移20列
+map("n", "w.", ":vertical resize +20<CR>", opt) -- 右移20列
+map("n", "wj", ":resize +10<CR>", opt) -- 上移10行
+map("n", "wk", ":resize -10<CR>", opt) -- 下移10行
 
 -- Alt + hjkltb在窗口之间跳转
 map("n", "<A-h>", "<C-w>h", opt) -- 移到左面窗口
@@ -99,6 +102,43 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- Alt+m打开或关闭nvim-tree
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
+
+-- hop插件快捷键，快速移动
+--local hop = require("hop")
+--local hop_directions = require("hop.hint").HintDirection
+--vim.keymap.set("", "f", function()
+--	hop.hint_char1({
+--		direction = hop_directions.AFTER_CURSOR,
+--		current_line_only = true,
+--	})
+--end, { remap = true, silent = true, desc = "reimplement builtin f" })
+--vim.keymap.set("", "F", function()
+--	hop.hint_char1({
+--		direction = hop_directions.BEFORE_CURSOR,
+--		current_line_only = true,
+--	})
+--end, { remap = true, silent = true, desc = "reimplement builtin F" })
+--vim.keymap.set("", "t", function()
+--	hop.hint_char1({
+--		direction = hop_directions.AFTER_CURSOR,
+--		current_line_only = true,
+--		hint_offset = -1,
+--	})
+--end, { remap = true, silent = true, desc = "reimplement builtin t" })
+--vim.keymap.set("", "T", function()
+--	hop.hint_char1({
+--		direction = hop_directions.BEFORE_CURSOR,
+--		current_line_only = true,
+--		hint_offset = -1,
+--	})
+--end, { remap = true, silent = true, desc = "reimplement builtin T" })
+--vim.keymap.set("n", "hc", hop.hint_char1(), opt)
+--vim.keymap.set("n", "hl", hop.hint_lines(), opt)
+--vim.keymap.set("n", "hp", hop.hint_patterns(), opt)
+--vim.keymap.set("n", "hv", hop.hint_vertical(), opt)
+--vim.keymap.set("n", "hw", hop.hint_words(), opt)
+--vim.keymap.set("n", "hC", hop.hint_char2(), opt)
+--vim.keymap.set("n", "hls", hop.hint_lines_skip_whitespace(), opt)
 
 -- 调用Telescope
 --local ts_builtin = require("telescope.builtin")

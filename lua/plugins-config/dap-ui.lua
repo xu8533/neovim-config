@@ -1,4 +1,5 @@
 local present, dapui = pcall(require, "dapui")
+
 if not present then
 	vim.notify("没有找到nvim-dap-ui插件，请先安装该插件!")
 	return
@@ -36,10 +37,26 @@ local dapui_config = {
 			position = "bottom",
 		},
 	},
+	controls = {
+		-- Requires Neovim nightly (or 0.8 when released)
+		enabled = true,
+		-- Display controls in this element
+		element = "repl",
+		icons = {
+			pause = "",
+			play = "",
+			step_into = "",
+			step_over = "",
+			step_out = "",
+			step_back = "",
+			run_last = "↻",
+			terminate = "□",
+		},
+	},
 	floating = {
 		max_height = nil, -- These can be integers or a float between 0 and 1.
 		max_width = nil, -- Floats will be treated as percentage of your screen.
-		border = "single", -- Border style. Can be "single", "double" or "rounded"
+		border = "rounded", -- Border style. Can be "single", "double" or "rounded"
 		mappings = {
 			close = { "q", "<Esc>" },
 		},

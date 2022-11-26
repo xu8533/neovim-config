@@ -14,11 +14,15 @@ local M = {}
 -- 配置on_attach和capabilities选项，lsp server需要使用
 --M.on_attach = function(client, bufnr)
 M.on_attach = function(client)
-	client.server_capabilities.documentFormattingProvider = false
-	client.server_capabilities.documentRangeFormattingProvider = false
-	-- 加入下列配置，确保正确使用null-ls作为代码格式化server
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
+	if vim.g.vim_version > 7 then
+		-- nightly
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	else
+		-- 加入下列配置，确保正确使用null-ls作为代码格式化server
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+	end
 
 	if client.server_capabilities.signatureHelpProvider then
 		require("utils.signature").setup(client)
@@ -48,7 +52,6 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 lspconfig.sumneko_lua.setup({
-	--lspconfig.stylua.setup({
 	on_attach = M.on_attach,
 	capabilities = M.capabilities,
 
@@ -61,7 +64,6 @@ lspconfig.sumneko_lua.setup({
 				globals = { "vim" },
 			},
 			workspace = {
-				--library = vim.api.nvim_get_runtime_file("", true),
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,

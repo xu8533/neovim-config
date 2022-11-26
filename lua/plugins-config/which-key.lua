@@ -43,11 +43,13 @@ local which_key_config = {
 		["<tab>"] = "TAB",
 		["<Tab>"] = "TAB",
 		["<a>"] = "ALT",
+		["<m>"] = "ALT",
 		["<s>"] = "SHI",
 		["<c>"] = "CTR",
 		["<A>"] = "ALT",
 		["<S>"] = "SHI",
 		["<C>"] = "CTR",
+		["<M>"] = "ALT",
 	},
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -93,7 +95,8 @@ local which_key_config = {
 which_key.setup(which_key_config)
 
 -- is_plugin_installed的参数使用
--- $HOME/.local/share/nvim/site/pack/packer/start/
+-- $HOME/.local/share/nvim/site/pack/packer/start/或
+-- $HOME/.local/share/nvim/site/pack/packer/opt/
 -- 目录下的目录名
 
 -- Packer
@@ -180,6 +183,58 @@ if is_plugin_installed("telescope.nvim") then
 	}, { prefix = "<leader>" })
 end
 
+-- hop, 快速移动
+if is_plugin_installed("hop.nvim") then
+	local hop = require("hop")
+	which_key.register({
+		h = {
+			name = "Hop motion",
+			c = {
+				function()
+					hop.hint_char1()
+				end,
+				"1 character move",
+			},
+			l = {
+				function()
+					hop.hint_lines()
+				end,
+				"line move",
+			},
+			p = {
+				function()
+					hop.hint_patterns()
+				end,
+				"pattern move",
+			},
+			v = {
+				function()
+					hop.hint_vertical()
+				end,
+				"vertical move",
+			},
+			w = {
+				function()
+					hop.hint_words()
+				end,
+				"word move",
+			},
+			C = {
+				function()
+					hop.hint_char2()
+				end,
+				"2 character move",
+			},
+			L = {
+				function()
+					hop.hint_lines_skip_whitespace()
+				end,
+				"start line move",
+			},
+		},
+	}, { prefix = "<leader>", mode = { "n", "v" }, remap = true })
+end
+
 -- Git keybinds.
 if is_plugin_installed("telescope.nvim") or is_plugin_installed("gitsigns.nvim") then
 	local git_maps = { g = { name = "Git" } }
@@ -222,6 +277,9 @@ if is_plugin_installed("toggleterm.nvim") then
 	end
 	if exec("python") == 1 then
 		terminal_maps.t.p = { ":lua PYTHON_TOGGLE()<CR>", "打开Python" }
+	end
+	if exec("perl") == 1 then
+		terminal_maps.t.P = { ":lua PERL_TOGGLE()<CR>", "打开Perl" }
 	end
 	if exec("ranger") == 1 then
 		terminal_maps.t.r = { ":lua RANGER_TOGGLE()<CR>", "打开Ranger" }
@@ -342,14 +400,16 @@ end
 if is_plugin_installed("Comment.nvim") then
 	which_key.register({
 		["/"] = {
+			name = "Comment",
 			"<Plug>(comment_toggle_linewise_current)",
-			"行注释",
+			"line comment",
 		},
 	}, { prefix = "<leader>", noremap = false, mode = "n" })
 	which_key.register({
 		["/"] = {
+			name = "Block Comment",
 			"<Plug>(comment_toggle_linewise_visual)",
-			"块注释",
+			"block comment",
 		},
 	}, { prefix = "<leader>", noremap = false, mode = "v" })
 end

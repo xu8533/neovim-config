@@ -1,15 +1,11 @@
 local present, cmp = pcall(require, "cmp")
 
-vim.notify = require("notify")
-
 if not present then
 	vim.notify("没有安装cmp插件，请先安装该插件!")
 	return
 end
 
 require("ui.highlight").load_highlight("nvim-cmp")
-
-vim.opt.completeopt = "menuone,noselect"
 require("lsp.config.luasnip-conf")
 
 local function border(hl_name)
@@ -41,14 +37,6 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
-	--formatting = {
-	--	fields = { "abbr", "kind", "menu" },
-	--	format = function(_, vim_item)
-	--		local icons = require("plugins-config.icons").lspkind
-	--		vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-	--		return vim_item
-	--	end,
-	--},
 	formatting = {
 		format = function(_, vim_item)
 			local icons = require("ui.icons").lspkind
@@ -56,10 +44,7 @@ cmp.setup({
 			return vim_item
 		end,
 	},
-	--formatting = require("lsp.config.lspkind").formatting,
 	windows = {
-		--        completion = cmp.config.window.bordered(),
-		--        documentation = cmp.config.window.bordered(),
 		completion = {
 			border = border("CmpBorder"),
 			winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
@@ -117,6 +102,7 @@ cmp.setup({
 		{ name = "path" },
 	},
 })
+
 -- cmdline complete --
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),

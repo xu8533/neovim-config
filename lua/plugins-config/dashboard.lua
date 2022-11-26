@@ -13,27 +13,32 @@ db.center_pad = 1
 db.footer_pad = 1
 
 local datetime_ok, datetime = pcall(os.date, "%Y-%m-%d 🕔 %I:%M:%p %A")
-local version_ok, nvim_version = pcall(os.capture, "vi --version | awk 'NR == 1'")
+--local version_ok, nvim_version = pcall(os.capture, "vi --version | awk 'NR == 1'")
+local version_ok = pcall(os.execute, "vi --version")
 
 local function footer()
 	if version_ok and datetime_ok then
-		return nvim_version .. " | " .. datetime
+		local total_plugins = #vim.tbl_keys(packer_plugins)
+		local version = vim.version()
+		local nvim_version_info = "  Neovim v" .. version.major .. "." .. version.minor .. "." .. version.patch
+		return datetime, " 共" .. total_plugins .. "个插件" .. nvim_version_info
 	elseif datetime_ok then
 		return datetime
 	else
-		return ""
+		return "error"
 	end
 end
 
+db.session_auto_save_on_exit = true
 db.custom_center = {
-	{
-		icon_hl = { fg = "blue" },
-		--icon = '  ',
-		icon = "  ",
-		desc = "书签                                    ",
-		shortcut = "      ",
-		action = ":Telescope vim_bookmarks all",
-	},
+	--{
+	--	icon_hl = { fg = "blue" },
+	--	--icon = '  ',
+	--	icon = "  ",
+	--	desc = "书签                                    ",
+	--	shortcut = "      ",
+	--	action = ":Telescope vim_bookmarks all",
+	--},
 	{
 		icon_hl = { fg = "blue" },
 		icon = "  ",
@@ -164,5 +169,5 @@ db.custom_header = {
 }
 db.custom_footer = {
 	footer(),
-	[[              欢迎使用NeoVIM              ]],
+	--[[              欢迎使用NeoVIM              ]]
 }

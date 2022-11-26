@@ -121,7 +121,7 @@ packer.startup({
 			end,
 		})
 		-- 图片视频预览
-		use({ "nvim-lua/popup.nvim", disable = true })
+		use({ "nvim-lua/popup.nvim", disable = false })
 		use({ "nvim-telescope/telescope-media-files.nvim", disable = true })
 		-- 快速查找优化插件
 		use({
@@ -137,14 +137,13 @@ packer.startup({
 		-- debug
 		use({
 			"mfussenegger/nvim-dap",
-			keys = { "<leader>d" },
+			keys = { "<Leader>d" },
 			--event = { "BufRead", "BufNewFile" },
 		})
 		use({
 			"Pocco81/dap-buddy.nvim",
 			after = "nvim-dap",
 			branch = "dev",
-			commit = "3679132",
 			config = function()
 				require("plugins-config.dap")
 			end,
@@ -249,6 +248,7 @@ packer.startup({
 				{ "i", "(" },
 				{ "i", "[" },
 				{ "i", "{" },
+				{ "i", "<" },
 				{ "i", "'" },
 				{ "i", '"' },
 				{ "i", "<BS>" },
@@ -281,7 +281,7 @@ packer.startup({
 		use({
 			"folke/which-key.nvim",
 			keys = {
-				"<leader>",
+				"<Leader>",
 				"g",
 				"d",
 				"y",
@@ -293,7 +293,7 @@ packer.startup({
 				"[",
 				"v",
 				"c",
-				"s",
+				--"s",
 				"b",
 				'"',
 				"'",
@@ -373,7 +373,7 @@ packer.startup({
 			keys = "<C-t>",
 			module = { "toggleterm", "toggleterm.terminal" },
 			config = function()
-				require("plugins-config.toggleterm")
+				require("plugins-config/toggleterm")
 			end,
 		})
 		-- 书签
@@ -392,6 +392,88 @@ packer.startup({
 				"BookmarkMoveUp",
 				"Telescope vim_bookmarks",
 			},
+		})
+		use({
+			"phaazon/hop.nvim",
+			branch = "v2", -- optional but strongly recommended
+			cmd = {
+				"HopWord",
+				"HopWordAC",
+				"HopWordBC",
+				"HopWordMW",
+				"HopWordCurrentLine",
+				"HopWordCurrentLineAC",
+				"HopWordCurrentLineBC",
+				"HopLine",
+				"HopLineAC",
+				"HopLineBC",
+				"HopLineMW",
+				"HopLineStart",
+				"HopLineStartAC",
+				"HopLineStartBC",
+				"HopLineStartMW",
+				"HopVertical",
+				"HopVerticalAC",
+				"HopVerticalBC",
+				"HopVerticalMW",
+				"HopPattern",
+				"HopPatternAC",
+				"HopPatternBC",
+				"HopPatternMW",
+				"HopPatternCurrentLine",
+				"HopPatternCurrentLineAC",
+				"HopPatternCurrentLineBC",
+				"HoptChar1",
+				"HoptChar1AC",
+				"HoptChar1BC",
+				"HoptChar1MW",
+				"HoptChar1CurrentLine",
+				"HoptChar1CurrentLineAC",
+				"HoptChar1CurrentLineBC",
+				"HoptChar2",
+				"HoptChar2AC",
+				"HoptChar2BC",
+				"HoptChar2MW",
+				"HoptChar2CurrentLine",
+				"HoptChar2CurrentLineAC",
+				"HoptChar2CurrentLineBC",
+			},
+			module = { "hop" },
+			config = function()
+				require("plugins-config.hop")
+			end,
+		}) --- EasyMotion like motion
+		use({
+			"ggandor/leap.nvim",
+			config = function()
+				require("plugins-config.leap")
+			end,
+		}) --- sneak like motion
+		use({
+			"ggandor/flit.nvim",
+			--keys = { "s", "S" },
+			after = { "leap.nvim" },
+			config = function()
+				require("plugins-config.flit")
+			end,
+		}) --- leap extension for f, F, t, T motion
+		use({
+			"kylechui/nvim-surround",
+			tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+			keys = {
+				{ "n", "cs" },
+				{ "n", "ds" },
+				{ "n", "ys" },
+				{ "n", "yss" },
+				{ "n", "yS" },
+				{ "i", "<C-g>s" },
+				{ "i", "<C-g>S" },
+				{ "v", "S" },
+				{ "v", "gS" },
+			},
+			config = function()
+				require("plugins-config.surround")
+			end,
 		})
 	end,
 	config = {

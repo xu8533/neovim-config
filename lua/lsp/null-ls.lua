@@ -30,17 +30,15 @@ null_ls.setup({
 		formatting.perltidy, -- perl脚本缩进和格式化
 		formatting.shfmt.with({
 			command = "shfmt",
-			args = {
+			extra_args = {
 				"-i",
 				"4",
 				"-ci",
 				"-bn",
-				"$FILENAME",
-				"-w",
 			},
 		}),
 	},
-	----    This function is for format on save.
+	--- This function is for format on save.
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

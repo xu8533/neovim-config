@@ -1,15 +1,13 @@
-my neovim config
+我的Neovim配置
+所有配置文件
 
-all files:
-
-.
 ├── init.lua
-├── lua
+├── **<font color=Blue>lua</font>**
 │   ├── autocmds.lua
 │   ├── colorscheme.lua
 │   ├── keybindings.lua
-│   ├── lsp
-│   │   ├── config
+│   ├── **<font color=Blue>lsp</font>**
+│   │   ├── **<font color=blue>config</font>**
 │   │   │   ├── lspsaga.lua
 │   │   │   ├── lsp-ui.lua
 │   │   │   ├── luasnip-conf.lua
@@ -19,18 +17,28 @@ all files:
 │   │   ├── null-ls.lua
 │   │   └── nvim-cmp.lua
 │   ├── options.lua
-│   ├── plugins-config
+│   ├── **<font color=blue>plugins-config</font>**
 │   │   ├── autopairs.lua
 │   │   ├── bookmarks.lua
 │   │   ├── bufferline.lua
 │   │   ├── colorizer.lua
 │   │   ├── comment.lua
-│   │   ├── dap.lua
-│   │   ├── dap-ui.lua
+│   │   ├── <font color=blue>dap</font>
+│   │   │   ├── dap-bashdb.lua
+│   │   │   ├── dap-config.lua
+│   │   │   ├── dap-lua.lua
+│   │   │   ├── dap-perl.lua
+│   │   │   ├── dap-ui.lua
+│   │   │   ├── dap-util.lua
+│   │   │   ├── dap-virtual-text.lua
+│   │   │   └── init.lua
 │   │   ├── dashboard.lua
+│   │   ├── flit.lua
 │   │   ├── gitsigns.lua
 │   │   ├── gruvbox.lua
+│   │   ├── hop.lua
 │   │   ├── indent-blankline.lua
+│   │   ├── leap.lua
 │   │   ├── lualine-bubbles.lua
 │   │   ├── lualine-evil.lua
 │   │   ├── lualine.lua -> my-lualine.lua
@@ -40,6 +48,7 @@ all files:
 │   │   ├── nvim-tree.lua
 │   │   ├── nvim-web-devicons.lua
 │   │   ├── project.lua
+│   │   ├── surround.lua
 │   │   ├── symbols-outline.lua
 │   │   ├── telescope.lua
 │   │   ├── toggleterm.lua
@@ -47,10 +56,10 @@ all files:
 │   │   ├── trouble.lua
 │   │   └── which-key.lua
 │   ├── plugins.lua
-│   ├── ui
+│   ├── **<font color=blue>ui</font>**
 │   │   ├── colors.lua
 │   │   ├── highlight.lua
-│   │   ├── hl-group
+│   │   ├── **<font color=blue>hl-group</font>**
 │   │   │   ├── blankline.lua
 │   │   │   ├── bufferline.lua
 │   │   │   ├── dashboard.lua
@@ -74,10 +83,10 @@ all files:
 │   │   │   ├── treesitter.lua
 │   │   │   └── whichkey.lua
 │   │   └── icons.lua
-│   └── utils
+│   └── **<font color=blue>utils</font>**
 │       ├── plugin-mappings.lua
 │       ├── signature.lua
 │       └── utils.lua
-├── plugin
+├── **<font color=blue>plugin</font>**
 │   └── packer_compiled.lua
 └── README

@@ -2,7 +2,7 @@
 所有配置文件
 
 ├── init.lua
-├── **<font color=Blue>lua</font>**
+├── <font color=Blue>lua</font>
 │   ├── autocmds.lua
 │   ├── colorscheme.lua
 │   ├── keybindings.lua

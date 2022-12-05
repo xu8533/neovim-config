@@ -1,13 +1,14 @@
 我的Neovim配置
 所有配置文件
 
+.
 ├── init.lua
-├── **<font color=Blue>lua</font>**
+├── lua
 │   ├── autocmds.lua
 │   ├── colorscheme.lua
 │   ├── keybindings.lua
-│   ├── **<font color=Blue>lsp</font>**
-│   │   ├── **<font color=blue>config</font>**
+│   ├── lsp
+│   │   ├── config
 │   │   │   ├── lspsaga.lua
 │   │   │   ├── lsp-ui.lua
 │   │   │   ├── luasnip-conf.lua
@@ -17,13 +18,13 @@
 │   │   ├── null-ls.lua
 │   │   └── nvim-cmp.lua
 │   ├── options.lua
-│   ├── **<font color=blue>plugins-config</font>**
+│   ├── plugins-config
 │   │   ├── autopairs.lua
 │   │   ├── bookmarks.lua
 │   │   ├── bufferline.lua
 │   │   ├── colorizer.lua
 │   │   ├── comment.lua
-│   │   ├── <font color=blue>dap</font>
+│   │   ├── dap
 │   │   │   ├── dap-bashdb.lua
 │   │   │   ├── dap-config.lua
 │   │   │   ├── dap-lua.lua
@@ -56,10 +57,10 @@
 │   │   ├── trouble.lua
 │   │   └── which-key.lua
 │   ├── plugins.lua
-│   ├── **<font color=blue>ui</font>**
+│   ├── ui
 │   │   ├── colors.lua
 │   │   ├── highlight.lua
-│   │   ├── **<font color=blue>hl-group</font>**
+│   │   ├── hl-group
 │   │   │   ├── blankline.lua
 │   │   │   ├── bufferline.lua
 │   │   │   ├── dashboard.lua
@@ -83,10 +84,10 @@
 │   │   │   ├── treesitter.lua
 │   │   │   └── whichkey.lua
 │   │   └── icons.lua
-│   └── **<font color=blue>utils</font>**
+│   └── utils
 │       ├── plugin-mappings.lua
 │       ├── signature.lua
 │       └── utils.lua
-├── **<font color=blue>plugin</font>**
+├── plugin
 │   └── packer_compiled.lua
 └── README

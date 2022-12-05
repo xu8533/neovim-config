@@ -1,10 +1,9 @@
--- 安装packer插件管理器
 --local fn = vim.fn
 --local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 --
---if fn.empty(fn.glob(install_path)) > 0 then
+--if fn.empty(fn.glob(install_path)) > 0
 --	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
---	print("packer插件管理器下载中..")
+--	print("packer插件管理器下载中)
 --	fn.system({
 --		"git",
 --		"clone",
@@ -25,27 +24,34 @@ packer.startup({
 			"wbthomason/packer.nvim",
 		})
 		-- lazy-load, 加快启动速度
+		-- 使用lazy-load配置选项时插件会被安装到~/.local/share/nvim/site/pack/packer/opt目录下
 		use({
 			"lewis6991/impatient.nvim",
-			--config = function()
-			--	require("impatient")
-			--end,
 		})
-		use({ "nvim-lua/plenary.nvim" })
+		use({ "nvim-lua/plenary.nvim", module = { "plenary" } })
 		-- 修改通知样式
 		use({
 			"rcarriga/nvim-notify",
-			-- 在使用选项配置选项时插件会被安装到~/.local/share/nvim/site/pack/packer/opt目录下
 			--event = "VimEnter",
 			config = function()
 				require("plugins-config.nvim-notify")
 			end,
 		})
 		-- 主题
-		--        use { 'mhartington/oceanic-next' }
+		-- use { 'mhartington/oceanic-next' }
 		use({ "folke/tokyonight.nvim", disable = false })
-		use({ "olimorris/onedarkpro.nvim", disable = false, cmd = "colorscheme" })
-		use({ "ellisonleao/gruvbox.nvim", disable = false, cmd = "colorscheme" })
+		use({
+			"olimorris/onedarkpro.nvim",
+			disable = false,
+			cmd = "colorscheme onedarkpro",
+			module = { "onedarkpro" },
+		})
+		use({
+			"ellisonleao/gruvbox.nvim",
+			disable = false,
+			cmd = "colorscheme gruvbox",
+			module = { "gruvbox" },
+		})
 		-- 终端图标
 		use({ "nvim-tree/nvim-web-devicons" })
 		-- 侧边栏目录
@@ -137,22 +143,47 @@ packer.startup({
 		-- debug
 		use({
 			"mfussenegger/nvim-dap",
-			keys = { "<Leader>d" },
-			--event = { "BufRead", "BufNewFile" },
+			keys = {
+				"<Leader>db",
+				"<Leader>dB",
+				"<Leader>dd",
+				"<Leader>dl",
+				"<Leader>dsb",
+				"<Leader>dsc",
+				"<F4>",
+				"<F5>",
+				"<F6>",
+				"<F7>",
+				"<F8>",
+				"<F9>",
+				"<F10>",
+			},
 		})
 		use({
-			"Pocco81/dap-buddy.nvim",
+			"ravenxrz/DAPInstall.nvim",
 			after = "nvim-dap",
-			branch = "dev",
+			module = "dap-install",
 			config = function()
 				require("plugins-config.dap")
 			end,
 		})
 		use({
-			"rcarriga/nvim-dap-ui",
-			after = "dap-buddy.nvim",
+			"theHamsta/nvim-dap-virtual-text",
+			after = "nvim-dap",
 			config = function()
-				require("plugins-config.dap-ui")
+				require("plugins-config.dap.dap-virtual-text")
+			end,
+		})
+		use({
+			"jbyuki/one-small-step-for-vimkind",
+			after = "nvim-dap",
+			module = "osv",
+		}) -- lua debugger
+		use({
+			"rcarriga/nvim-dap-ui",
+			after = "nvim-dap",
+			config = function()
+				require("plugins-config.dap.dap-ui")
 			end,
 		})
 
@@ -357,6 +388,7 @@ packer.startup({
 				--"<Plug>(comment_toggle_linewise_visual)",
 				"gc",
 				"gb",
+				"<leader>/",
 			},
 			config = function()
 				require("plugins-config.comment")
@@ -445,13 +477,13 @@ packer.startup({
 		}) --- EasyMotion like motion
 		use({
 			"ggandor/leap.nvim",
+			keys = { "s", "S", "gs" },
 			config = function()
 				require("plugins-config.leap")
 			end,
 		}) --- sneak like motion
 		use({
 			"ggandor/flit.nvim",
-			--keys = { "s", "S" },
 			after = { "leap.nvim" },
 			config = function()
 				require("plugins-config.flit")
